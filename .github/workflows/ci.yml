@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: start container
-        run: docker-compose -f "docker-compose.yml" up -d --build
+        run: docker-compose -f "./workflows/.github/docker-compose.yml" up -d --build
 
       - name: todo action step
         id: todo
@@ -42,4 +42,4 @@ jobs:
 
       - name: stop container
         if: always()
-        run: docker-compose -f "docker-compose.yml" down
+        run: docker-compose -f "./workflows/.github/docker-compose.yml" down
