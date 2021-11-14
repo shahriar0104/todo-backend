@@ -14,4 +14,4 @@ RUN chmod +x /usr/config/configure-db.sh
 
 #CMD ["/bin/bash", "-l"]
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/usr/config/entrypoint.sh"]
