@@ -10,11 +10,11 @@ on:
     branches: [ main ]
 
 jobs:
-  #   build:
-  #     runs-on: ubuntu-latest
-  container-job:
-    # Containers must run in Linux based operating systems
+  build:
     runs-on: ubuntu-latest
+      #     container-job:
+      #       # Containers must run in Linux based operating systems
+      #       runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
     container: ubuntu
     # Service containers to run with `container-job`
@@ -30,9 +30,9 @@ jobs:
           - "1433:1433"
 
     steps:
-#      - name: todo action step
-#        id: todo
-#        uses: shahriar0104/todo-backend@v1
+      #      - name: todo action step
+      #        id: todo
+      #        uses: shahriar0104/todo-backend@v1
 
       - name: Checkout code
         uses: actions/checkout@v2
