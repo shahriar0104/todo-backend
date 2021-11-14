@@ -5,7 +5,9 @@ WORKDIR /usr/config
 # Bundle config source
 COPY . /usr/config
 # Grant permissions for to our scripts to be executable
-RUN sudo chmod +x /usr/config/entrypoint.sh
-RUN sudo chmod +x /usr/config/configure-db.sh
+RUN chmod +x /usr/config/entrypoint.sh
+RUN chmod +x /usr/config/configure-db.sh
+
+CMD ["/bin/bash", "-l"]
 
 ENTRYPOINT ["./entrypoint.sh"]
