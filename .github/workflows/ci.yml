@@ -31,9 +31,9 @@ jobs:
         ports:
           - "1433:1433"
         volumes:
-          - ./db/mssql/docker-entrypoint.sh:/entrypoint.sh
-          - ./db/mssql/docker-db-init.sh:/db-init.sh
-          - ./db/mssql/mssql-todo.sql:/db-init.sql
+          - ./db/mssql/entrypoint.sh
+          - ./db/mssql/init.sh
+          - ./db/mssql/todo.sql
 
     steps:
       #      - name: todo action step
