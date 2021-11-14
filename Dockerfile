@@ -4,6 +4,7 @@ RUN mkdir -p /usr/config
 WORKDIR /usr/config
 # Bundle config source
 #COPY . /usr/config
+USER root
 COPY entrypoint.sh /usr/config/entrypoint.sh
 COPY configure-db.sh /usr/config/configure-db.sh
 COPY setup.sql /usr/config/setup.sql
