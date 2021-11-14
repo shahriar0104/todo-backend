@@ -3,11 +3,14 @@ FROM mcr.microsoft.com/mssql/server:2019-latest
 RUN mkdir -p /usr/config
 WORKDIR /usr/config
 # Bundle config source
-COPY . /usr/config
+#COPY . /usr/config
+COPY entrypoint.sh /usr/config/entrypoint.sh
+COPY configure-db.sh /usr/config/configure-db.sh
+COPY setup.sql /usr/config/setup.sql
 # Grant permissions for to our scripts to be executable
 RUN chmod +x /usr/config/entrypoint.sh
 RUN chmod +x /usr/config/configure-db.sh
 
-CMD ["/bin/bash", "-l"]
+#CMD ["/bin/bash", "-l"]
 
 ENTRYPOINT ["./entrypoint.sh"]
