@@ -34,10 +34,6 @@ jobs:
 #        id: todo
 #        uses: shahriar0104/todo-backend@v1
 
-      - name: check instance name
-        run: |
-          /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "toor0104~"
-          SELECT @@servername
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Maven
