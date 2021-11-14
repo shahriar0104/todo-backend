@@ -22,6 +22,7 @@ jobs:
       mssql:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
+          --name: sql1
           SA_PASSWORD: "toor0104~"
           ACCEPT_EULA: "Y"
 #          MSSQL_DB: todo
@@ -41,7 +42,7 @@ jobs:
       #        uses: shahriar0104/todo-backend@v1
 
       - name: create db
-        run: /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]; GO"
+        run: /usr/bin/docker exec -i sql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]; GO"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Maven
