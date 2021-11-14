@@ -35,19 +35,16 @@ jobs:
 #        uses: shahriar0104/todo-backend@v1
 
       - name: Checkout code
-      - uses: actions/checkout@v2
-
+        uses: actions/checkout@v2
       - name: Set up Maven
         uses: stCarolas/setup-maven@v4.2
         with:
           maven-version: 3.8.2
-
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
           cache: maven
-
       - name: Build with Maven
         run: mvn -B test --file pom.xml
