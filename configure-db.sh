@@ -24,4 +24,4 @@ sleep 30s
 echo "running set up script"
 
 # Run the setup script to create the DB and the schema in the DB
-/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P toor0104~ -d master -i setup.sql
+/opt/mssql-tools/bin/sqlcmd -S localhost --accept-eula -U sa -P toor0104~ -d master -i setup.sql
