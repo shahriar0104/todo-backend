@@ -22,10 +22,16 @@ jobs:
   #      mssql:
   #        image: mcr.microsoft.com/mssql/server:2019-latest
 
-    steps:
-      - name: start container
-        run: docker-compose -f "./workflows/.github/docker-compose.yml" up -d --build
+    services:
+      mssql:
+        env:
+          SA_PASSWORD: "toor0104~"
+          ACCEPT_EULA: "Y"
+          MSSQL_AGENT_ENABLED: "true"
+        ports:
+          - "1433:1433"
 
+    steps:
       - name: todo action step
         id: todo
         uses: shahriar0104/todo-backend@v1
@@ -39,7 +45,3 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B test --file pom.xml
-
-      - name: stop container
-        if: always()
-        run: docker-compose -f "./workflows/.github/docker-compose.yml" down
