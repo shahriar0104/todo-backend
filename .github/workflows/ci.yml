@@ -19,7 +19,7 @@ jobs:
     container: ubuntu
     # Service containers to run with `container-job`
     services:
-      localhost:
+      mssql:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
           SA_PASSWORD: "toor0104~"
