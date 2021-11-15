@@ -16,11 +16,8 @@ jobs:
       mssql:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
-          SA_PASSWORD: "toor0104~"
+          SA_PASSWORD: "centre-assign-test"
           ACCEPT_EULA: "Y"
-          MSSQL_DB: todo
-          MSSQL_USER: toor
-          MSSQL_PASSWORD: toor0104~
           MSSQL_AGENT_ENABLED: "true"
         ports:
           - "1433:1433"
@@ -31,10 +28,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: env setup
+        env:
+          DB_USER: sa
+          DB_PASS: centre-assign-test
       - name: create db
         run: |
           ls
-          docker exec -i msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]"
+          docker exec -i msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P centre-assign-test -d master -Q "CREATE DATABASE [todo]"
       - name: Set up Maven
         uses: stCarolas/setup-maven@v4.2
         with:
