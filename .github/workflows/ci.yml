@@ -43,7 +43,7 @@ jobs:
       - name: create db
         run: |
           ls
-          docker exec -i ${{jobs.services.mssql.id}} /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]; GO"
+          docker exec -i ${{ job.services.mssql.id }} /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]; GO"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Maven
