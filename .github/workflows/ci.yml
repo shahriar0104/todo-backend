@@ -16,7 +16,7 @@ jobs:
       mssql:
         image: mcr.microsoft.com/mssql/server:2019-latest
         env:
-          SA_PASSWORD: "centre-assign-test"
+          SA_PASSWORD: "centre963~"
           ACCEPT_EULA: "Y"
           MSSQL_AGENT_ENABLED: "true"
         ports:
@@ -31,10 +31,10 @@ jobs:
       - name: create db
         run: |
           ls
-          docker exec -i msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P centre-assign-test -d master -Q "CREATE DATABASE [todo]"
+          docker exec -i msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P centre963~ -d master -Q "CREATE DATABASE [todo]"
         env:
           DB_USER: sa
-          DB_PASS: centre-assign-test
+          DB_PASS: centre963~
       - name: Set up Maven
         uses: stCarolas/setup-maven@v4.2
         with:
