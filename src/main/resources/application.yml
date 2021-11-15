@@ -1,8 +1,8 @@
 spring:
   datasource:
 #    url: jdbc:sqlserver://DESKTOP-DF641H4\SQLEXPRESS;database=todo
-    url: jdbc:sqlserver://localhost:1433;database=todo
-    username: SA
+    url: jdbc:sqlserver://localhost;database=todo
+    username: sa
     password: toor0104~
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
