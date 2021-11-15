@@ -32,21 +32,14 @@ jobs:
           - "1433:1433"
         options:
           --name msql1
-          
-#        volumes:
-#          - ./db/mssql/entrypoint.sh
-#          - ./db/mssql/init.sh
-#          - ./db/mssql/todo.sql
 
     steps:
-      #      - name: todo action step
-      #        id: todo
-      #        uses: shahriar0104/todo-backend@v1
-
+      - name: Docker manually install
+        run: apt-get install docker
       - name: create db
         run: |
           ls
-          docker exec -it ${{ job.services.mssql.name }} /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]; GO"
+          docker exec -it msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]; GO"
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up Maven
