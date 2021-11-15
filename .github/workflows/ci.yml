@@ -16,7 +16,7 @@ jobs:
       #       # Containers must run in Linux based operating systems
       #       runs-on: ubuntu-latest
     # Docker Hub image that `container-job` executes in
-    container: ubuntu
+#     container: ubuntu
     # Service containers to run with `container-job`
     services:
       mssql:
@@ -34,14 +34,12 @@ jobs:
           --name msql1
 
     steps:
-      - name: Docker manually install
-        run: apt-get install docker.io
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: create db
         run: |
           ls
           docker exec -it msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P toor0104~ -d master -Q "CREATE DATABASE [todo]; GO"
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Set up Maven
         uses: stCarolas/setup-maven@v4.2
         with:
