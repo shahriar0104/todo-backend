@@ -30,7 +30,7 @@ jobs:
           MSSQL_AGENT_ENABLED: "true"
         ports:
           - "1433:1433"
-        options: >-
+        options:
           --name msql1
           
 #        volumes:
