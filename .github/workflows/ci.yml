@@ -31,7 +31,7 @@ jobs:
         ports:
           - "1433:1433"
         options: >-
-          --name: msql1
+          --name msql1
           
 #        volumes:
 #          - ./db/mssql/entrypoint.sh
