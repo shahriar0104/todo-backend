@@ -1,5 +1,0 @@
-name: 'docker-mssql-setup'
-description: 'setting up the docker mssql'
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
