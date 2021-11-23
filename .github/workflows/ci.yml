@@ -28,6 +28,31 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          #SOURCE: "/"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+#          EXCLUDE: "/.next/, /node_modules/"
+
+      - name: Run via ssh
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: |
+            ls -a
+            cd todo-backend/
+            ./mvnw clean install -DskipTests
+            docker build -t todo-backend-docker.jar .
+            docker run -d -e DB_USER=sa -e DB_PASS=toor0104~ -e SERVICE_PORT=5019 -p 5019:5019 --add-host=host.docker.internal:host-gateway todo-backend-docker.jar .
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          privateKey: ${{ secrets.SERVER_SSH_KEY }}
+
       - name: create db
         run: |
           ls

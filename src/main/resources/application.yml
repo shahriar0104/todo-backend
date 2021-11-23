@@ -1,7 +1,7 @@
 spring:
   datasource:
 #    url: jdbc:sqlserver://DESKTOP-DF641H4\SQLEXPRESS;database=todo
-    url: jdbc:sqlserver://localhost;database=todo
+    url: jdbc:sqlserver://host.docker.internal;database=todo
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -17,6 +17,12 @@ spring:
   liquibase:
     drop-first: true
     change-log: db.changelog/db.changelog-master.yaml
+
+server:
+#  servlet:
+#    context-path:
+  port: ${SERVICE_PORT:5019}
+  forward-headers-strategy: framework
 
 #spring.datasource.url=jdbc:postgresql://localhost:5432/todo
 #spring.datasource.username=postgres
