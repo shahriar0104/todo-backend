@@ -12,18 +12,18 @@ on:
 jobs:
   container:
     runs-on: ubuntu-latest
-    services:
-      mssql:
-        image: mcr.microsoft.com/mssql/server:2019-latest
-        env:
-          SA_PASSWORD: "centre963~"
-          ACCEPT_EULA: "Y"
-          MSSQL_AGENT_ENABLED: "true"
-        ports:
-          - "1433:1433"
-        options:
-          --name msql1
-          -h localhost
+#    services:
+#      mssql:
+#        image: mcr.microsoft.com/mssql/server:2019-latest
+#        env:
+#          SA_PASSWORD: "centre963~"
+#          ACCEPT_EULA: "Y"
+#          MSSQL_AGENT_ENABLED: "true"
+#        ports:
+#          - "1433:1433"
+#        options:
+#          --name msql1
+#          -h localhost
 
     steps:
       - name: Checkout code
@@ -34,7 +34,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete"
-          #SOURCE: "/"
+#          SOURCE: "/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
@@ -54,22 +54,22 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           privateKey: ${{ secrets.SERVER_SSH_KEY }}
 
-      - name: create db
-        run: |
-          ls
-          docker exec -i msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P centre963~ -d master -Q "CREATE DATABASE [todo]"
-        env:
-          DB_USER: sa
-          DB_PASS: centre963~
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.2
-        with:
-          maven-version: 3.8.2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-          cache: maven
-      - name: Build with Maven
-        run: mvn -B test --file pom.xml
+#      - name: create db
+#        run: |
+#          ls
+#          docker exec -i msql1 /opt/mssql-tools/bin/sqlcmd -S mssql -U sa -P centre963~ -d master -Q "CREATE DATABASE [todo]"
+#        env:
+#          DB_USER: sa
+#          DB_PASS: centre963~
+#      - name: Set up Maven
+#        uses: stCarolas/setup-maven@v4.2
+#        with:
+#          maven-version: 3.8.2
+#      - name: Set up JDK 11
+#        uses: actions/setup-java@v2
+#        with:
+#          java-version: '11'
+#          distribution: 'adopt'
+#          cache: maven
+#      - name: Build with Maven
+#        run: mvn -B test --file pom.xml
