@@ -45,8 +45,8 @@ jobs:
         with:
           command: |
             ls -a
-            cd todo-backend/
-            ./mvnw clean install -DskipTests
+            cd work/todo-backend/
+            ./mvnw clean install -Djar.finalName=todo-backend-docker -DskipTests
             docker build -t todo-backend-docker.jar .
             docker run -d -e DB_USER=sa -e DB_PASS=toor0104~ -e SERVICE_PORT=5019 -p 5019:5019 --add-host=host.docker.internal:host-gateway todo-backend-docker.jar .
           host: ${{ secrets.REMOTE_HOST }}
