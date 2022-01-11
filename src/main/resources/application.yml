@@ -1,7 +1,7 @@
 spring:
   datasource:
 #    url: jdbc:sqlserver://DESKTOP-DF641H4\SQLEXPRESS;database=todo
-    url: jdbc:sqlserver://host.docker.internal;database=todo
+    url: jdbc:sqlserver://${HOST:localhost};database=todo
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
@@ -21,7 +21,7 @@ spring:
 server:
 #  servlet:
 #    context-path:
-  port: ${SERVICE_PORT:5019}
+  port: ${SERVICE_PORT:8080}
   forward-headers-strategy: framework
 
 #spring.datasource.url=jdbc:postgresql://localhost:5432/todo
